@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.sky {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: 
+    linear-gradient(to top, #87ceeb80, #a6d8ff80),
+    url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') no-repeat center center / cover;
+  animation: sky-color-shift 30s ease-in-out infinite alternate;
+  overflow: hidden;
+}
+
+@keyframes sky-color-shift {
+  0% { background-position: center center; }
+  100% { background-position: center top; }
+}
+
+.sun {
+  position: absolute;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, #ffd93b, #fbc500 70%, #f7b300);
+  border-radius: 50%;
+  box-shadow: 0 0 60px 20px #ffd93b;
+  animation: sun-rise-set 20s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes sun-rise-set {
+  0%, 100% { bottom: -100px; opacity: 0; }
+  50% { bottom: 60%; opacity: 1; }
+}
+
+/* CLOUDS */
+.cloud {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.8;
+  width: 100px;
+  height: 60px;
+  box-shadow: 30px 0 #fff, 60px 10px #fff, 90px 0 #fff;
+  z-index: 2;
+}
+
+.cloud1 {
+  top: 80px;
+  left: -200px;
+  animation: cloud-move 60s linear infinite;
+}
+.cloud2 {
+  top: 150px;
+  left: -300px;
+  animation: cloud-move 90s linear infinite;
+}
+.cloud3 {
+  top: 50px;
+  left: -400px;
+  animation: cloud-move 75s linear infinite;
+}
+
+@keyframes cloud-move {
+  0% { left: -300px; }
+  100% { left: 120%; }
+}
+
+/* BIRDS */
+.bird {
+  position: absolute;
+  width: 30px;
+  height: 20px;
+  border: 2px solid #333;
+  border-top: none;
+  border-right: none;
+  background: transparent;
+  transform: rotate(-45deg);
+  z-index: 3;
+  animation: bird-fly 20s linear infinite;
+}
+
+.bird::before, .bird::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 10px;
+  border: 2px solid #333;
+  border-top: none;
+  border-right: none;
+  background: transparent;
+}
+
+.bird::before {
+  left: -10px;
+  transform: rotate(-20deg);
+}
+.bird::after {
+  left: 10px;
+  transform: rotate(-70deg);
+}
+
+@keyframes bird-fly {
+  0% { transform: translateX(0) rotate(-45deg); }
+  100% { transform: translateX(100vw) rotate(-45deg); }
+}
+
+/* Weather Panel */
+.weather-container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.3);
+  padding: 25px 30px;
+  border-radius: 20px;
+  max-width: 360px;
+  margin: 0 auto;
+  text-align: center;
+  color: #222;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.weather-container h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.weather-container input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 18px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.weather-container button {
+  width: 100%;
+  padding: 12px;
+  background: #3399ff;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.weather-container button:hover {
+  background: #2277dd;
+}
+
+#weatherResult {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+/* RAIN EFFECT */
+.rain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 4; /* behind weather panel, in front of background */
+  }
+  
+  .rain-drop {
+    position: absolute;
+    width: 2px;
+    height: 15px;
+    background: rgba(255, 255, 255, 0.5);
+    animation: fall linear infinite;
+  }
+  
+  @keyframes fall {
+    to {
+      transform: translateY(100vh);
+    }
+  }
+  
+/* Trees */
+.trees {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(to top, #0b3d0b 0%, transparent 90%);
+  z-index: 5;
+}
